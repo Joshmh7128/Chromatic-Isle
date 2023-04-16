@@ -12,7 +12,7 @@ public class PlayerInteractionManager : MonoBehaviour
 
     [SerializeField] RectTransform cursorNorm, cursorHighlight;
 
-    bool hoveringInteractable; // are we hovering over an interactable right now
+    [SerializeField] bool hoveringInteractable; // are we hovering over an interactable right now
 
     public void Update()
     {
@@ -35,7 +35,10 @@ public class PlayerInteractionManager : MonoBehaviour
             if (hit.transform.gameObject.GetComponent<Interactable>().usable)
             hoveringInteractable = true;
 
-            if (Input.GetMouseButtonDown(0))
+            if (!hit.transform.gameObject.GetComponent<Interactable>().usable)
+                hoveringInteractable = false;
+
+            if (Input.GetMouseButtonDown(0) && hit.transform.gameObject.GetComponent<Interactable>().usable)
             {
                 hit.transform.gameObject.GetComponent<Interactable>().Interact();
             }
@@ -53,20 +56,20 @@ public class PlayerInteractionManager : MonoBehaviour
         if (hoveringInteractable)
         {
             // lerp down the normal cursor
-            cursorNorm.localScale = Vector3.Lerp(cursorNorm.localScale, Vector3.zero, Time.fixedDeltaTime * 2);
+            cursorNorm.localScale = Vector3.Lerp(cursorNorm.localScale, Vector3.zero, Time.fixedDeltaTime * 5);
 
             // lerp up the highlight
-            cursorHighlight.localScale = Vector3.Lerp(cursorNorm.localScale, Vector3.one, Time.fixedDeltaTime * 2);
+            cursorHighlight.localScale = Vector3.Lerp(cursorHighlight.localScale, Vector3.one, Time.fixedDeltaTime * 5);
 
         }
 
         if (!hoveringInteractable)
         {
             // lerp down the normal cursor
-            cursorNorm.localScale = Vector3.Lerp(cursorNorm.localScale, Vector3.one, Time.fixedDeltaTime * 2);
+            cursorNorm.localScale = Vector3.Lerp(cursorNorm.localScale, Vector3.one, Time.fixedDeltaTime * 5);
 
             // lerp up the highlight
-            cursorHighlight.localScale = Vector3.Lerp(cursorNorm.localScale, Vector3.zero, Time.fixedDeltaTime * 2);
+            cursorHighlight.localScale = Vector3.Lerp(cursorHighlight.localScale, Vector3.zero, Time.fixedDeltaTime * 5);
 
         }
 

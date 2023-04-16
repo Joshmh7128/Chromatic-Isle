@@ -17,6 +17,7 @@ public class InteractableButton : Interactable
     {
         // set to active
         activeStatus = true;
+        usable = false;
 
         // play our sound
         audioSource.Play();

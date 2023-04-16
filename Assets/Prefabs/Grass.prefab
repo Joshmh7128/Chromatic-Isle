@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6814787264686205008}
   - component: {fileID: 4279770064451509671}
   - component: {fileID: 200205147586807077}
-  - component: {fileID: 9008765270315248874}
   m_Layer: 0
   m_Name: Grass (7)
   m_TagString: Untagged
@@ -203,20 +202,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382217465318468922}
   m_Mesh: {fileID: 0}
---- !u!64 &9008765270315248874
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 382217465318468922}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &2604174280054464213
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +215,6 @@ GameObject:
   - component: {fileID: 7122185049496646238}
   - component: {fileID: 3648182003196323590}
   - component: {fileID: 2476027640173970066}
-  - component: {fileID: 2241135206084648234}
   m_Layer: 0
   m_Name: Grass (2)
   m_TagString: Untagged
@@ -420,20 +404,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2604174280054464213}
   m_Mesh: {fileID: 0}
---- !u!64 &2241135206084648234
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2604174280054464213}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &2820549894105184215
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +417,6 @@ GameObject:
   - component: {fileID: 6288671813148923191}
   - component: {fileID: 2606384839426288547}
   - component: {fileID: 4361290927253383479}
-  - component: {fileID: 4046930680888395798}
   m_Layer: 0
   m_Name: Grass (9)
   m_TagString: Untagged
@@ -637,20 +606,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2820549894105184215}
   m_Mesh: {fileID: 0}
---- !u!64 &4046930680888395798
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2820549894105184215}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &2892875308227203274
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +619,6 @@ GameObject:
   - component: {fileID: 89146755098582785}
   - component: {fileID: 4186170161903311504}
   - component: {fileID: 6483533185512100029}
-  - component: {fileID: 4835503429186287830}
   m_Layer: 0
   m_Name: Grass
   m_TagString: Untagged
@@ -854,20 +808,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2892875308227203274}
   m_Mesh: {fileID: 0}
---- !u!64 &4835503429186287830
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2892875308227203274}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &4632274643927646778
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +821,6 @@ GameObject:
   - component: {fileID: 2552017532154661296}
   - component: {fileID: 7485640279656491667}
   - component: {fileID: 1074612231344187909}
-  - component: {fileID: 8442313122336501834}
   m_Layer: 0
   m_Name: Grass (5)
   m_TagString: Untagged
@@ -1071,20 +1010,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4632274643927646778}
   m_Mesh: {fileID: 0}
---- !u!64 &8442313122336501834
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4632274643927646778}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &5061624435557647065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,7 +1023,6 @@ GameObject:
   - component: {fileID: 4333784616590212436}
   - component: {fileID: 5619086055956064461}
   - component: {fileID: 4481226222692752078}
-  - component: {fileID: 6678072925535688297}
   m_Layer: 0
   m_Name: Grass (1)
   m_TagString: Untagged
@@ -1288,20 +1212,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5061624435557647065}
   m_Mesh: {fileID: 0}
---- !u!64 &6678072925535688297
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5061624435557647065}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &5379011063233926916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,7 +1225,6 @@ GameObject:
   - component: {fileID: 979345466597110524}
   - component: {fileID: 1391814754075794894}
   - component: {fileID: 4528838066948390927}
-  - component: {fileID: 4016865127312803097}
   m_Layer: 0
   m_Name: Grass (3)
   m_TagString: Untagged
@@ -1505,20 +1414,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5379011063233926916}
   m_Mesh: {fileID: 0}
---- !u!64 &4016865127312803097
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5379011063233926916}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &5933394937552659648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,7 +1427,6 @@ GameObject:
   - component: {fileID: 5387624899357379431}
   - component: {fileID: 3687976334656875961}
   - component: {fileID: 2948920717634566541}
-  - component: {fileID: 296519477994700603}
   m_Layer: 0
   m_Name: Grass (8)
   m_TagString: Untagged
@@ -1722,20 +1616,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5933394937552659648}
   m_Mesh: {fileID: 0}
---- !u!64 &296519477994700603
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5933394937552659648}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &7158952493921052801
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,7 +1629,6 @@ GameObject:
   - component: {fileID: 4176984498577916436}
   - component: {fileID: 8851307437880779368}
   - component: {fileID: 8381560309856151629}
-  - component: {fileID: 1092472987021731467}
   m_Layer: 0
   m_Name: Grass (4)
   m_TagString: Untagged
@@ -1939,20 +1818,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7158952493921052801}
   m_Mesh: {fileID: 0}
---- !u!64 &1092472987021731467
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7158952493921052801}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &8323792058122805233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,7 +1831,6 @@ GameObject:
   - component: {fileID: 7934405729938491069}
   - component: {fileID: 3738801978037952458}
   - component: {fileID: 122439552934820794}
-  - component: {fileID: 5711052603330772664}
   m_Layer: 0
   m_Name: Grass (6)
   m_TagString: Untagged
@@ -2155,20 +2019,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8323792058122805233}
-  m_Mesh: {fileID: 0}
---- !u!64 &5711052603330772664
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8323792058122805233}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &8465751580546021867
 GameObject:
