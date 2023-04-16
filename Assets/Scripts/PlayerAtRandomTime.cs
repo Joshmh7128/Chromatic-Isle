@@ -7,12 +7,7 @@ public class PlayerAtRandomTime : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        gameObject.GetComponent<AudioSource>().loop = true;
+        gameObject.GetComponent<AudioSource>().time = Random.Range(0, gameObject.GetComponent<AudioSource>().time);
     }
 }
