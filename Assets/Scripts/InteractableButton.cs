@@ -5,12 +5,14 @@ using UnityEngine;
 public class InteractableButton : Interactable
 {
     [SerializeField] List<Renderer> renderers = new List<Renderer>(); // our renderers for any visual FX
-    [SerializeField] AudioSource audioSource;
+    public AudioSource audioSource;
     [SerializeField] bool oneTimeUse; // can we only use this once?
 
     private void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
+        RenderCheck();
+
     }
 
     // when we interact, set ourselves to active
@@ -25,16 +27,25 @@ public class InteractableButton : Interactable
         // play our sound
         audioSource.Play();
 
-        if (renderers.Count != 0)
-            foreach (Renderer renderer in renderers)
-            {
-                renderer.material = Resources.Load<Material>("Materials/ActiveElement");
-            }
+        RenderCheck();
 
         // activate the puzzle
         foreach (PuzzleElement element in elements)
         {
             element.Activate();
         }
+    }
+
+    void RenderCheck()
+    {
+        if (renderers.Count != 0)
+            foreach (Renderer renderer in renderers)
+            {
+                if (activeStatus)
+                    renderer.material = Resources.Load<Material>("Materials/ActiveElement");
+
+                if (!activeStatus)
+                    renderer.material = Resources.Load<Material>("Materials/InactiveElement");
+            }
     }
 }

@@ -23,7 +23,11 @@ public class Metronome : MonoBehaviour
     public IEnumerator MetronomeCounter()
     {
         BeatTick();
-        yield return new WaitForSecondsRealtime(60 / bpm);
+        yield return new WaitForSecondsRealtime(60 / bpm); 
+        beat++; // advance the beat after it happens
+
+        // make sure the beat is never more than 4 or less than 1
+        if (beat > 8) beat = 1;
         StartCoroutine(MetronomeCounter());
     }
 
@@ -32,9 +36,8 @@ public class Metronome : MonoBehaviour
         if (beatTicks.Count >= 4)
         {
             audioSource.PlayOneShot(beatTicks[beat - 1]); // play the correct beat
-            beat++; // advance the beat
-            // make sure the beat is never more than 4 or less than 1
-            if (beat > 8) beat = 1;
+            
+
         }
     }
 }

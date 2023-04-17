@@ -9,9 +9,9 @@ public class BeatButton : InteractableButton
 
     private void Update()
     {
-        if (metronome.beat == activeBeat && activeStatus)
+        if (metronome.beat == activeBeat && activeStatus && !audioSource.isPlaying)
         {
-
+            audioSource.Play();
         }
     }
 }
