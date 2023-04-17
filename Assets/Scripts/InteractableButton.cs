@@ -16,8 +16,9 @@ public class InteractableButton : Interactable
     // when we interact, set ourselves to active
     public override void Interact()
     {
-        // set to active
-        activeStatus = true;
+        // set to the opposite state
+        activeStatus = !activeStatus;
+
         if (oneTimeUse)
             usable = false;
 
