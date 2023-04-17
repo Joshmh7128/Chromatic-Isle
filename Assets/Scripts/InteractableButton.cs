@@ -6,6 +6,7 @@ public class InteractableButton : Interactable
 {
     [SerializeField] List<Renderer> renderers = new List<Renderer>(); // our renderers for any visual FX
     [SerializeField] AudioSource audioSource;
+    [SerializeField] bool oneTimeUse; // can we only use this once?
 
     private void Start()
     {
@@ -17,7 +18,8 @@ public class InteractableButton : Interactable
     {
         // set to active
         activeStatus = true;
-        usable = false;
+        if (oneTimeUse)
+            usable = false;
 
         // play our sound
         audioSource.Play();
