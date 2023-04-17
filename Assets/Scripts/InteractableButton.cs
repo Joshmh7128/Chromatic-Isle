@@ -28,5 +28,10 @@ public class InteractableButton : Interactable
                 renderer.material = Resources.Load<Material>("Materials/ActiveElement");
             }
 
+        // activate the puzzle
+        foreach (PuzzleElement element in elements)
+        {
+            element.Activate();
+        }
     }
 }

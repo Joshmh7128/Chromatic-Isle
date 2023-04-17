@@ -8,6 +8,7 @@ public class PuzzleElementDoor : PuzzleElement
     [SerializeField] float speed; // how fast do we move 
     [SerializeField] AudioSource movingSource, stopSource; // audio for moving and stopping
     bool canMove; // can we move?
+    bool moved; // have we moved?
 
     public override void Activate()
     {
@@ -20,12 +21,16 @@ public class PuzzleElementDoor : PuzzleElement
     private void FixedUpdate()
     {
         if (canMove)
-            transform.position = Vector3.Lerp(transform.position, targetPos, speed);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, speed*Time.fixedDeltaTime);
 
-        if (Vector3.Distance(transform.position, targetPos) > 1)
+        if (Vector3.Distance(transform.localPosition, targetPos) < 1)
         {
-            movingSource.Stop();
-            stopSource.Play();
+            if (!moved)
+            {
+                moved = true;
+                movingSource.Stop();
+                stopSource.Play();
+            }
         }
     }
 }
