@@ -11,6 +11,8 @@ public class BeatBoard : MonoBehaviour
     [SerializeField] List<Interactable> interactables, solution; // all the buttons on the board
     public bool solved; // have we solved the board?
 
+    [SerializeField] PuzzleElement doorRight, doorLeft; 
+
     private void Update()
     {
         // keep moving our marker
@@ -59,13 +61,11 @@ public class BeatBoard : MonoBehaviour
             if (compared.ToList<Interactable>().Count == 0)
             {
                 solved = true;
+                if (doorRight.canActivate)
+                    doorRight.Activate();
+                if (doorLeft.canActivate)
+                    doorLeft.Activate();
             }
         }
-    }
-
-
-    void SolvePuzzle()
-    {
-
     }
 }
