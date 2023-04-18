@@ -9,12 +9,18 @@ public class PuzzleElementSummerPion : PuzzleElement
     [SerializeField] List<AudioClip> spinSounds; // our spinning clips
     [SerializeField] AudioSource spinSource, clickSource;
     [SerializeField] float spinSpeed; // how fast does the dial spin?
+    [SerializeField] Interactable interactable;
+
+
+    bool sound; // should we play sound?
 
     bool clicked;
 
     private void Start()
     {
+        isActive = interactable.activeStatus;
         Activate();
+        sound = true; // so that we don't play sound on load
     }
 
     bool isActive; // is this active?
@@ -32,7 +38,8 @@ public class PuzzleElementSummerPion : PuzzleElement
             targetSpin.y = 180;
 
         // play a rotation noise
-        spinSource.PlayOneShot(spinSounds[Random.Range(0, spinSounds.Count)]);
+        if (sound)
+            spinSource.PlayOneShot(spinSounds[Random.Range(0, spinSounds.Count)]);
     }
 
     private void FixedUpdate()
@@ -40,7 +47,7 @@ public class PuzzleElementSummerPion : PuzzleElement
         // as we update, rotate the spin dial to our target rotation
         spinDial.localRotation = Quaternion.Euler(Vector3.MoveTowards(spinDial.transform.localEulerAngles, targetSpin, spinSpeed * Time.fixedDeltaTime));
         // play one shot of the click
-        if (clicked == false && spinDial.eulerAngles == targetSpin)
+        if (clicked == false && spinDial.eulerAngles == targetSpin && sound)
         {
             clicked = true;
             clickSource.PlayOneShot(clickSource.clip);
