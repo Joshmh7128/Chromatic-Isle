@@ -26,10 +26,10 @@ public class PuzzleElementSummerPion : PuzzleElement
 
         // always starts active, but then set our rotation based on activity
         if (isActive)
-            targetSpin.z = 0;
+            targetSpin.y = 0;
 
         if (!isActive)
-            targetSpin.z = 180;
+            targetSpin.y = 180;
 
         // play a rotation noise
         spinSource.PlayOneShot(spinSounds[Random.Range(0, spinSounds.Count)]);
@@ -38,7 +38,7 @@ public class PuzzleElementSummerPion : PuzzleElement
     private void FixedUpdate()
     {
         // as we update, rotate the spin dial to our target rotation
-        spinDial.rotation = Quaternion.Euler(Vector3.MoveTowards(spinDial.transform.eulerAngles, targetSpin, spinSpeed * Time.fixedDeltaTime));
+        spinDial.localRotation = Quaternion.Euler(Vector3.MoveTowards(spinDial.transform.localEulerAngles, targetSpin, spinSpeed * Time.fixedDeltaTime));
         // play one shot of the click
         if (clicked == false && spinDial.eulerAngles == targetSpin)
         {
