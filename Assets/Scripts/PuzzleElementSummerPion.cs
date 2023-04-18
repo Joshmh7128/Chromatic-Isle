@@ -9,7 +9,7 @@ public class PuzzleElementSummerPion : PuzzleElement
     [SerializeField] List<AudioClip> spinSounds; // our spinning clips
     [SerializeField] AudioSource spinSource, clickSource;
     [SerializeField] float spinSpeed; // how fast does the dial spin?
-    [SerializeField] Interactable interactable;
+    public Interactable interactable;
 
 
     bool sound; // should we play sound?
