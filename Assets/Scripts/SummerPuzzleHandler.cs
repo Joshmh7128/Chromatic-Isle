@@ -23,21 +23,27 @@ public class SummerPuzzleHandler : MonoBehaviour
         foreach(PuzzleElementSummerPion pion in pions)
             checkAnswers.Add(pion.interactable.activeStatus);
 
+        bool solved = true;
+
         // check all the answers
-        for (int i = 0; i < checkAnswers.Count; i++)
+        for (int i = 0; i < correctAnswers.Count; i++)
         {
             if (checkAnswers[i] != correctAnswers[i])
-                break;
+                solved = false;
         }
 
         // if we can reach this code, activate!
+        if (solved)
         Solve();
     }
 
     // run when we solve the puzzle
     void Solve()
     {
-        doorLeft.Activate();
-        doorRight.Activate();
+        if (doorLeft.canActivate)
+            doorLeft.Activate();
+
+        if (doorRight.canActivate)
+            doorRight.Activate();
     }
 }

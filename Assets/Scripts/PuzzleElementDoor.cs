@@ -9,6 +9,7 @@ public class PuzzleElementDoor : PuzzleElement
     [SerializeField] AudioSource movingSource, stopSource; // audio for moving and stopping
     bool canMove; // can we move?
     bool moved; // have we moved?
+    [SerializeField] bool manualActivation;
 
     public override void Activate()
     {
@@ -20,6 +21,9 @@ public class PuzzleElementDoor : PuzzleElement
 
     private void FixedUpdate()
     {
+        if (manualActivation)
+            Activate();
+
         if (canMove)
             transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, speed*Time.fixedDeltaTime);
 
