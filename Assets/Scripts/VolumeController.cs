@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class VolumeController : MonoBehaviour
 {
-    [SerializeField] CanvasGroup fadeCanvas;
+    public CanvasGroup fadeCanvas, finaleCanvas;
+
+    public static VolumeController instance;
 
     private void Awake()
     {
+        instance = this;
         fadeCanvas.alpha = 1;
     }
 
