@@ -11,12 +11,30 @@ public class PuzzleElementDoor : PuzzleElement
     bool moved; // have we moved?
     [SerializeField] bool manualActivation;
 
+    private void Start()
+    {
+        CheckSave();
+    }
+
+    void CheckSave()
+    {
+        if (PlayerPrefs.GetString(gameObject.name) != null)
+        {
+            if (PlayerPrefs.GetString(gameObject.name) == "open")
+            {
+                Activate();
+            }
+        }
+    }
+
     public override void Activate()
     {
         canActivate = false;
         canMove = true;
         movingSource.Play();
         movingSource.loop = true;
+
+        PlayerPrefs.SetString(gameObject.name, "open");
     }
 
     private void FixedUpdate()
