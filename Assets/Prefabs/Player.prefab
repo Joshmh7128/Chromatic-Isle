@@ -480,7 +480,7 @@ MonoBehaviour:
   characterController: {fileID: 9014155148900697673}
   moveSpeed: 6
   gravity: -15
-  jumpVelocity: 10
+  jumpVelocity: 0
   moveSpeedAdjust: 1
   moveLerpAxisDelta: 12
   gravityValue: 0
