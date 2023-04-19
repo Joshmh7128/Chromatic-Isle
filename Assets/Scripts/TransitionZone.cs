@@ -9,7 +9,7 @@ public class TransitionZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             SceneManager.LoadScene(targetScene);
         }    
