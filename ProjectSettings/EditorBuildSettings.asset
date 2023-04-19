@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Summer.unity
+    guid: 062f6d5087d4d6f4e8e2c154c4a7a712
+  - enabled: 1
     path: Assets/Scenes/Winter.unity
     guid: 9878a20d784fe2d4faf8c37218a7f246
   - enabled: 1
