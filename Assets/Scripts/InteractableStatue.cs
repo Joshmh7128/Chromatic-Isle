@@ -15,6 +15,10 @@ public class InteractableStatue : InteractableButton
 
     private void Start()
     {
+        statueState = PlayerPrefs.GetInt(gameObject.name, statueState);
+
+        targetRot.y = 90 * statueState;
+
         // run a statecheck at the start so that we play the correct sound
         StateCheck();
     }
@@ -26,6 +30,7 @@ public class InteractableStatue : InteractableButton
 
     public override void Interact()
     {
+
         // run our base interact
         base.Interact();
 
@@ -42,6 +47,8 @@ public class InteractableStatue : InteractableButton
         // reset at 4
         if (statueState >= 4)
             statueState = 0;
+
+        PlayerPrefs.SetInt(gameObject.name, statueState);
 
         // play our stone sliding sound
         PlaySound();

@@ -53,6 +53,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         ProcessUpdateInputs();
+
+        if (Input.GetKeyDown(KeyCode.F12))
+        {
+            PlayerPrefs.DeleteAll();
+            SceneManager.LoadScene("Hub");
+        }
     }
 
     // Update is called once per frame
@@ -84,11 +90,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F12))
-        {
-            PlayerPrefs.DeleteAll();
-            SceneManager.LoadScene("Hub");
-        }
+
 
     }
 
