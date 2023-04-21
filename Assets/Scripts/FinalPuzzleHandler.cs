@@ -67,8 +67,10 @@ public class FinalPuzzleHandler : MonoBehaviour
         if (PlayerController.instance.transform.position.y > 35)
         {
             VolumeController.instance.finaleCanvas.alpha += Time.fixedDeltaTime;
-        }
 
+            // clear the player prefs
+            PlayerPrefs.DeleteAll();
+        }
     }
 
 
