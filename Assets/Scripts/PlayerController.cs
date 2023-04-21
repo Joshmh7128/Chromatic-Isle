@@ -36,6 +36,12 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     public void Awake()
     {
+        // compare our version number
+        if (PlayerPrefs.GetString("version", Application.version) != Application.version)
+        {
+            PlayerPrefs.DeleteAll();
+        }
+
         instance = this;
         // setup bit layer masks
         playerIgnoreMask = LayerMask.NameToLayer("PlayerIgnore");

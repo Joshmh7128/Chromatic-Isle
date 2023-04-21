@@ -40,6 +40,9 @@ public class FinalPuzzleHandler : MonoBehaviour
     // run final
     void RunFinal()
     {
+        // clear the player prefs so that the player can replay
+        PlayerPrefs.DeleteAll();
+
         // make it so that the player can no longer move when they solve the puzzle
         PlayerController.instance.canMove = false;
         PlayerController.instance.enabled = false;
@@ -68,8 +71,6 @@ public class FinalPuzzleHandler : MonoBehaviour
         {
             VolumeController.instance.finaleCanvas.alpha += Time.fixedDeltaTime;
 
-            // clear the player prefs
-            PlayerPrefs.DeleteAll();
         }
     }
 
