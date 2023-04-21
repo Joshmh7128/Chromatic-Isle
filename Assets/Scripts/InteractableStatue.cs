@@ -11,6 +11,8 @@ public class InteractableStatue : InteractableButton
     [SerializeField] List<AudioClip> stoneSounds;
     [SerializeField] List<AudioSource> musicSounds; // our music sounds that we play
 
+    [SerializeField] string prefCheck; // which preferences do we check so we can play the correct note?
+    
     public int statueState; // our current state
 
     private void Start()
@@ -39,6 +41,11 @@ public class InteractableStatue : InteractableButton
         {
             // add to the state
             statueState++;
+
+            // if our prefcheck fails, we cannot use our true sound
+            if (!PrefCheck(prefCheck) && statueState == 1)
+                statueState++;
+
             // rotate the object by 90 degrees every time we click it
             targetRot = new Vector3(0, targetRot.y + 90, 0);
 
@@ -55,6 +62,11 @@ public class InteractableStatue : InteractableButton
 
         // check which state we are in and play the correct sound
         StateCheck();
+    }
+
+    bool PrefCheck(string check)
+    {
+        return PlayerPrefs.GetString(check, "close") == "open";
     }
 
     // check which state we are in and play the according sound
