@@ -23,6 +23,7 @@ public class WinterBoardMarkerCheck : MonoBehaviour
 
             if (!played)
             {
+                if (audioSource != null)
                 audioSource.Play();
                 played = true;
             }
