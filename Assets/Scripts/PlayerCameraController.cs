@@ -16,7 +16,7 @@ public class PlayerCameraController : MonoBehaviour
     [SerializeField] public Transform AimTarget; // the transform of the object we are using to aim at 
     [SerializeField] Camera mainCam; // our main cam
     [SerializeField] float aimFOV; // how far in we aim
-    bool canControl = true; // can we control this?
+    public bool canControl = true; // can we control this?
     [SerializeField] float forwardCheckOffset; // the offset of how far forward we check our check hitcast
     [SerializeField] float normalFOV; // our normal FOV
 

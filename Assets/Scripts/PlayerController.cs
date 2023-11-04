@@ -32,6 +32,13 @@ public class PlayerController : MonoBehaviour
     int playerIgnoreMask;
     int ignoreLayerMask;
 
+    [Header("Pause Menu Attributes")]
+    [SerializeField] CanvasGroup activeCanvas, menuCanvas; // the canvas groups for our menus
+    float activeTargetAlpha, menuTargetAlpha; // what are the target alphas for our menus?
+    bool inMenu; // are we currently in the menu?
+    [SerializeField] float canvasLerpSpeed;
+    [SerializeField] GameObject mainParent, creditsParent; // the main and credits parent objects
+
     // setup our instance
     public static PlayerController instance;
     public void Awake()
@@ -48,7 +55,6 @@ public class PlayerController : MonoBehaviour
         ignoreLayerMask = (1 << playerIgnoreMask);
         ignoreLayerMask = ~ignoreLayerMask;
     }
-
 
     private void Start()
     {
@@ -75,6 +81,9 @@ public class PlayerController : MonoBehaviour
         {
             ProcessMovement();
         }
+
+        // process our menu alpha
+        UpdatePauseMenuAlpha();
     }
 
     void ProcessUpdateInputs()
@@ -96,8 +105,12 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
-
+        // pausing input
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // toggle our pause menu
+            TogglePauseMenu();
+        }
     }
 
     // our movement function
@@ -220,6 +233,36 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawSphere(adjusterHit.point, 0.1f);
     }
 
+    // toggles our pause menu on and off
+    void TogglePauseMenu()
+    {
+        // toggle the menu
+        inMenu = !inMenu;
 
+        // set our values based on the menu state
+        switch (inMenu)
+        {
+            case true:
+                activeTargetAlpha = 0;
+                menuTargetAlpha = 1;
+                canMove = false;
+                PlayerCameraController.instance.canControl = false;
+                break;
+
+            case false:
+                activeTargetAlpha = 1;
+                menuTargetAlpha = 0;
+                canMove = true;
+                PlayerCameraController.instance.canControl = true;
+                break;
+        }
+    }
+
+    // lerp our pause menu alphas
+    void UpdatePauseMenuAlpha()
+    {
+        activeCanvas.alpha = Mathf.Lerp(activeCanvas.alpha, activeTargetAlpha, canvasLerpSpeed);
+        menuCanvas.alpha = Mathf.Lerp(menuCanvas.alpha, menuTargetAlpha, canvasLerpSpeed);
+    }
 
 }
