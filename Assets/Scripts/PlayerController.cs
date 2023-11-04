@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,11 +34,13 @@ public class PlayerController : MonoBehaviour
     int ignoreLayerMask;
 
     [Header("Pause Menu Attributes")]
-    [SerializeField] CanvasGroup activeCanvas, menuCanvas; // the canvas groups for our menus
-    float activeTargetAlpha, menuTargetAlpha; // what are the target alphas for our menus?
+    [SerializeField] CanvasGroup activeCanvas;
+    [SerializeField] CanvasGroup menuCanvas; // the canvas groups for our menus
+    float activeTargetAlpha = 1, menuTargetAlpha = 0; // what are the target alphas for our menus?
     bool inMenu; // are we currently in the menu?
     [SerializeField] float canvasLerpSpeed;
     [SerializeField] GameObject mainParent, creditsParent; // the main and credits parent objects
+    [SerializeField] TMPro.TextMeshProUGUI creditsButtonText; // the text on the credits button
 
     // setup our instance
     public static PlayerController instance;
@@ -71,6 +74,7 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.DeleteAll();
             SceneManager.LoadScene("Hub");
         }
+
     }
 
     // Update is called once per frame
@@ -106,7 +110,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // pausing input
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace))
         {
             // toggle our pause menu
             TogglePauseMenu();
@@ -243,17 +247,29 @@ public class PlayerController : MonoBehaviour
         switch (inMenu)
         {
             case true:
+                // set our alphas
                 activeTargetAlpha = 0;
                 menuTargetAlpha = 1;
+                // make sure tat we cannot move, and can interact with the menu
+                // menuCanvas.interactable = true;
                 canMove = false;
                 PlayerCameraController.instance.canControl = false;
+                // set our mouse to unlocked and visible
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 break;
 
             case false:
+                // set our alphas
                 activeTargetAlpha = 1;
                 menuTargetAlpha = 0;
+                // make sure we cannot interact by accident, and that we can move again
+                // menuCanvas.interactable = false;
                 canMove = true;
                 PlayerCameraController.instance.canControl = true;
+                // set our mouse to locked and invisible
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 break;
         }
     }
@@ -261,8 +277,24 @@ public class PlayerController : MonoBehaviour
     // lerp our pause menu alphas
     void UpdatePauseMenuAlpha()
     {
-        activeCanvas.alpha = Mathf.Lerp(activeCanvas.alpha, activeTargetAlpha, canvasLerpSpeed);
-        menuCanvas.alpha = Mathf.Lerp(menuCanvas.alpha, menuTargetAlpha, canvasLerpSpeed);
+        activeCanvas.alpha = Mathf.Lerp(activeCanvas.alpha, activeTargetAlpha, canvasLerpSpeed * Time.deltaTime);
+        menuCanvas.alpha = Mathf.Lerp(menuCanvas.alpha, menuTargetAlpha, canvasLerpSpeed * Time.deltaTime);
     }
 
+    // the function called by the show/hide credits button
+    public void ToggleCredits()
+    {
+        // toggle our parents activity
+        mainParent.SetActive(!mainParent.activeSelf);
+        creditsParent.SetActive(!creditsParent.activeSelf);
+
+        // based on activity, change the text on the button
+        _ = mainParent.activeSelf == true ? creditsButtonText.text = "Show Credits" : creditsButtonText.text = "Hide Credits";
+    }
+
+    // for quitting the game
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
