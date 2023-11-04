@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerCameraController : MonoBehaviour
 {
     [Header("Camera")]
-    [SerializeField] float aimSensitivity;
+    [SerializeField] public float aimSensitivity; // used to calculate our sensitivty
     [SerializeField] float defaultSensitivity; // how fast the camera aims
     [SerializeField] float minYAngle, maxYAngle; // the minimum and maximum rotations of the camera
     float currentSensitivity, yRotate, xRotate;
@@ -28,6 +28,8 @@ public class PlayerCameraController : MonoBehaviour
     {
         // setup our main cam to be referenced
         mainCam = Camera.main;
+        // set our audio listener volume
+        AudioListener.volume = PlayerPrefs.GetFloat("volume");
     }
 
     private void Update()
@@ -70,19 +72,6 @@ public class PlayerCameraController : MonoBehaviour
     // control our camera via the mouse
     void ProcessCameraControl()
     {
-        // sensitivity adjuster
-        if (Input.GetKeyDown(KeyCode.Comma))
-        {
-            defaultSensitivity--;
-            PlayerPrefs.SetFloat("sensitivity", defaultSensitivity);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Period))
-        {
-            defaultSensitivity++;
-            PlayerPrefs.SetFloat("sensitivity", defaultSensitivity);
-        }
-
         // our camera control
         currentSensitivity = aimSensitivity * 10f;
         // run math to rotate the head of the player as we move the mouse

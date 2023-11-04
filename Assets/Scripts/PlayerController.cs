@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -39,8 +40,9 @@ public class PlayerController : MonoBehaviour
     float activeTargetAlpha = 1, menuTargetAlpha = 0; // what are the target alphas for our menus?
     bool inMenu; // are we currently in the menu?
     [SerializeField] float canvasLerpSpeed;
-    [SerializeField] GameObject mainParent, creditsParent; // the main and credits parent objects
+    [SerializeField] GameObject mainParent, creditsParent, confirmButton; // the main and credits parent objects
     [SerializeField] TMPro.TextMeshProUGUI creditsButtonText; // the text on the credits button
+    [SerializeField] Slider sensitivitySlider, volumeSlider; // our sliders on the pause menu
 
     // setup our instance
     public static PlayerController instance;
@@ -57,12 +59,28 @@ public class PlayerController : MonoBehaviour
         playerIgnoreMask = LayerMask.NameToLayer("PlayerIgnore");
         ignoreLayerMask = (1 << playerIgnoreMask);
         ignoreLayerMask = ~ignoreLayerMask;
+
+
     }
 
     private void Start()
     {
+        // set our values
+        SetValues();
+
         // lock cursor
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+
+    void SetValues()
+    {
+        Debug.Log("getting values on start..." + PlayerPrefs.GetFloat("sensitivity", 7) + " " + PlayerPrefs.GetFloat("volume", 0.5f));
+        // setup the sliders in the pause menu
+        sensitivitySlider.value = PlayerPrefs.GetFloat("sensitivity", 7);
+        volumeSlider.value = PlayerPrefs.GetFloat("volume", 0.5f);
+        AudioListener.volume = PlayerPrefs.GetFloat("volume", 0.5f);
+        PlayerCameraController.instance.aimSensitivity = PlayerPrefs.GetFloat("sensitivity", 7);
     }
 
     private void Update()
@@ -71,8 +89,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F12))
         {
-            PlayerPrefs.DeleteAll();
-            SceneManager.LoadScene("Hub");
+            ResetGame();
         }
 
     }
@@ -237,6 +254,13 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawSphere(adjusterHit.point, 0.1f);
     }
 
+    // reset the entire game.
+    public void ResetGame()
+    {
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene("Hub");
+    }
+
     // toggles our pause menu on and off
     void TogglePauseMenu()
     {
@@ -257,6 +281,11 @@ public class PlayerController : MonoBehaviour
                 // set our mouse to unlocked and visible
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                // update our slider values from our preferences
+                Debug.Log("getting values... " + PlayerPrefs.GetFloat("sensitivity") + PlayerPrefs.GetFloat("volume"));
+                sensitivitySlider.value = PlayerPrefs.GetFloat("sensitivity", 7);
+                volumeSlider.value = PlayerPrefs.GetFloat("volume", 0.5f);
+
                 break;
 
             case false:
@@ -270,6 +299,8 @@ public class PlayerController : MonoBehaviour
                 // set our mouse to locked and invisible
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
+                // hide the confirmation button for resetting the game
+                confirmButton.SetActive(false);
                 break;
         }
     }
@@ -297,4 +328,41 @@ public class PlayerController : MonoBehaviour
     {
         Application.Quit();
     }
+
+    // toggle fullscreen
+    public void ToggleFullscreen()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+    }
+
+    // set our mouse sensitivity
+    public void SetSensitivity()
+    {
+        // only run this when we are in a menu
+        if (!inMenu) return;
+        // set our mouse sensitivity
+        PlayerCameraController.instance.aimSensitivity = sensitivitySlider.value;
+        // save our mouse sensitivity to preferences
+        PlayerPrefs.SetFloat("sensitivity", PlayerCameraController.instance.aimSensitivity);
+        Debug.Log("setting value... " + PlayerPrefs.GetFloat("sensitivity"));
+    }
+
+    // set our volume
+    public void SetVolume()
+    {
+        // only run this when we are in a menu
+        if (!inMenu) return;
+        // set the audio of the game to our slider
+        AudioListener.volume = volumeSlider.value;
+        // save that to a floar
+        PlayerPrefs.SetFloat("volume", volumeSlider.value);
+        Debug.Log("setting value... " + PlayerPrefs.GetFloat("volume"));
+    }
+
+    // toggle confirmation
+    public void ShowConfirm()
+    {
+        confirmButton.SetActive(true);
+    }
+
 }
