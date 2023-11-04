@@ -109,23 +109,6 @@ public class PlayerController : MonoBehaviour
 
     void ProcessUpdateInputs()
     {
-        // jumping input
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (groundedHit.transform != null || remainingJumps > 0 && maxJumps > 0)
-            {
-                // jumping
-                if (Input.GetKey(KeyCode.Space) && (groundCheckCooldown <= 0 || remainingJumps > 0))
-                {
-                    playerJumpVelocity = 0;
-                    playerJumpVelocity = Mathf.Sqrt(-jumpVelocity * gravity);
-                    remainingJumps--; // reduce jumps
-                    groundCheckCooldown = groundCheckCooldownMax; // make sure we set the cooldown check
-
-                }
-            }
-        }
-
         // pausing input
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace))
         {
