@@ -75,7 +75,6 @@ public class PlayerController : MonoBehaviour
 
     void SetValues()
     {
-        Debug.Log("getting values on start..." + PlayerPrefs.GetFloat("sensitivity", 7) + " " + PlayerPrefs.GetFloat("volume", 0.5f));
         // setup the sliders in the pause menu
         sensitivitySlider.value = PlayerPrefs.GetFloat("sensitivity", 7);
         volumeSlider.value = PlayerPrefs.GetFloat("volume", 0.5f);
@@ -265,7 +264,6 @@ public class PlayerController : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 // update our slider values from our preferences
-                Debug.Log("getting values... " + PlayerPrefs.GetFloat("sensitivity") + PlayerPrefs.GetFloat("volume"));
                 sensitivitySlider.value = PlayerPrefs.GetFloat("sensitivity", 7);
                 volumeSlider.value = PlayerPrefs.GetFloat("volume", 0.5f);
 

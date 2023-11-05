@@ -70,7 +70,12 @@ public class FinalPuzzleHandler : MonoBehaviour
         if (PlayerController.instance.transform.position.y > 35)
         {
             VolumeController.instance.finaleCanvas.alpha += Time.fixedDeltaTime;
-
+            // if the player presses escape here, close the game
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Debug.Log("Quit Requested");
+                Application.Quit();
+            }
         }
     }
 
