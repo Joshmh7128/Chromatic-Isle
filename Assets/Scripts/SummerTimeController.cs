@@ -31,10 +31,10 @@ public class SummerTimeController : MonoBehaviour
     {
         time += timeSpeed * Time.fixedDeltaTime;
 
-        if (time > 10)
+        if (time >= 10)
             timeSpeed = -timeSpeed;
 
-        if (time < 0)
+        if (time <= 0)
             timeSpeed = -timeSpeed;
     }
 
@@ -74,7 +74,10 @@ public class SummerTimeController : MonoBehaviour
 
     void VolumeProcess()
     {
-        dayVol.weight = (10/time)/10;
-        nightVol.weight = time/10;
+        if (time >= 0)
+        {
+            dayVol.weight = (10 / time) / 10;
+            nightVol.weight = time / 10;
+        }
     }
 }
