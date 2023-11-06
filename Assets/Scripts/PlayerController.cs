@@ -113,6 +113,7 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             ProcessMovement();
+            ProcessHome();
         }
 
         // process our menu alpha
@@ -384,6 +385,33 @@ public class PlayerController : MonoBehaviour
     public void ShowConfirm()
     {
         confirmButton.SetActive(true);
+    }
+
+    [SerializeField] float homeCount, homeMax; // our home count and home max
+    [SerializeField] CanvasGroup homeCanvas; // our white fade canvas
+    // hold to go home
+    public void ProcessHome()
+    {
+
+        // always set the alpha of our canvas
+        homeCanvas.alpha = homeCount / homeMax;
+
+        // hold H for X seconds to return home
+        if (Input.GetKey(KeyCode.H))
+        {
+            homeCount++;
+            if (homeCount >= homeMax)
+            {
+                // return to the hub
+                SceneManager.LoadScene("Hub");
+            }
+            return;
+        }
+
+        // if we aren't holding H then reduce the home count
+        if (homeCount > 0) 
+            homeCount--;
+
     }
 
 }
