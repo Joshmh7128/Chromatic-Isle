@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Steamworks;
 
 public class PlayerController : MonoBehaviour
 {
@@ -44,6 +45,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] TMPro.TextMeshProUGUI creditsButtonText; // the text on the credits button
     [SerializeField] Slider sensitivitySlider, volumeSlider; // our sliders on the pause menu
 
+    // callback for our pause menu
+    protected Callback<GameOverlayActivated_t> SteamOverlayActivated;
+
     // setup our instance
     public static PlayerController instance;
     public void Awake()
@@ -65,11 +69,20 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        // set our values
-        SetValues();
+        // ensure we initialize the steamworks manager
+        if (SteamManager.Initialized)
+        {
+            string name = SteamFriends.GetPersonaName();
+            Debug.Log(name);
 
+            // set our values
+            SetValues();
+        }
         // lock cursor
         Cursor.lockState = CursorLockMode.Locked;
+
+        // create our steam overlay callback
+        SteamOverlayActivated = Callback<GameOverlayActivated_t>.Create(OnGameOverlayActivated);
     }
 
 
@@ -104,6 +117,15 @@ public class PlayerController : MonoBehaviour
 
         // process our menu alpha
         UpdatePauseMenuAlpha();
+    }
+
+    // when the steam overlay is active
+    private void OnGameOverlayActivated(GameOverlayActivated_t pCallback)
+    {
+        if (pCallback.m_bActive != 0)
+        {
+            OpenPauseMenu();
+        }
     }
 
     void ProcessUpdateInputs()
@@ -284,6 +306,24 @@ public class PlayerController : MonoBehaviour
                 confirmButton.SetActive(false);
                 break;
         }
+    }
+
+    void OpenPauseMenu()
+    {
+        // set our alphas
+        activeTargetAlpha = 0;
+        menuTargetAlpha = 1;
+        // make sure tat we cannot move, and can interact with the menu
+        // menuCanvas.interactable = true;
+        canMove = false;
+        PlayerCameraController.instance.canControl = false;
+        // set our mouse to unlocked and visible
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        // update our slider values from our preferences
+        sensitivitySlider.value = PlayerPrefs.GetFloat("sensitivity", 7);
+        volumeSlider.value = PlayerPrefs.GetFloat("volume", 0.5f);
+
     }
 
     // lerp our pause menu alphas
