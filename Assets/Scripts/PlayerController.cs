@@ -75,9 +75,11 @@ public class PlayerController : MonoBehaviour
             string name = SteamFriends.GetPersonaName();
             Debug.Log(name);
 
-            // set our values
-            SetValues();
         }
+
+        // set our settings values
+        SetValues();
+
         // lock cursor
         Cursor.lockState = CursorLockMode.Locked;
 
