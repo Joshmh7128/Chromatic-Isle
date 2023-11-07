@@ -265,6 +265,10 @@ public class PlayerController : MonoBehaviour
     public void ResetGame()
     {
         PlayerPrefs.DeleteAll();
+
+        PlayerPrefs.SetFloat("volume", 0.5f);
+        PlayerPrefs.SetFloat("sensitivity", 7);
+
         SceneManager.LoadScene("Hub");
     }
 
