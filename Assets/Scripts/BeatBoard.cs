@@ -42,7 +42,6 @@ public class BeatBoard : MonoBehaviour
             }
         }
 
-
         if (current.Count > 0)
         {
             // compare the current list to the solution list
@@ -53,7 +52,8 @@ public class BeatBoard : MonoBehaviour
             {
                 if (!solution.Contains(interactable))
                 {
-                    break;
+                    solved = false;
+                    return;
                 }
             }
 
