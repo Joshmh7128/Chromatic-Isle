@@ -1,3 +1,4 @@
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,6 +70,7 @@ public class FinalPuzzleHandler : MonoBehaviour
 
         if (PlayerController.instance.transform.position.y > 35)
         {
+            SteamUserStats.SetAchievement("Hub_Complete");
             VolumeController.instance.finaleCanvas.alpha += Time.fixedDeltaTime;
             // if the player presses escape here, close the game
             if (Input.GetKeyDown(KeyCode.Escape))
