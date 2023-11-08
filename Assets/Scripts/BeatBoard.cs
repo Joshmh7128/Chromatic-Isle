@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
+using Steamworks;
 
 public class BeatBoard : MonoBehaviour
 {
@@ -11,7 +13,9 @@ public class BeatBoard : MonoBehaviour
     [SerializeField] List<Interactable> interactables, solution; // all the buttons on the board
     public bool solved; // have we solved the board?
 
-    [SerializeField] PuzzleElement doorRight, doorLeft; 
+    [SerializeField] PuzzleElement doorRight, doorLeft;
+
+    bool achievementChecked = false; // have we checked out achievement?
 
     private void Update()
     {
@@ -19,6 +23,10 @@ public class BeatBoard : MonoBehaviour
         AdvanceMarker();
         // check if we have solved the puzzle every frame
         CheckSolution();
+
+        // if we have not gotten our achievement yet...
+        if (!achievementChecked)
+            CheckAchievement();
     }
 
     // move our marker when the beat is triggered
@@ -42,7 +50,6 @@ public class BeatBoard : MonoBehaviour
             }
         }
 
-
         if (current.Count > 0)
         {
             // compare the current list to the solution list
@@ -53,7 +60,8 @@ public class BeatBoard : MonoBehaviour
             {
                 if (!solution.Contains(interactable))
                 {
-                    break;
+                    solved = false;
+                    return;
                 }
             }
 
@@ -66,6 +74,28 @@ public class BeatBoard : MonoBehaviour
                 if (doorLeft.canActivate)
                     doorLeft.Activate();
             }
+        }
+    }
+
+    // check for our achievement
+    void CheckAchievement()
+    {
+        bool check = true;
+        foreach (Interactable button in interactables)
+        {
+            if (button.activeStatus == false)
+            {
+                check = false;
+                break;
+            }
+        }
+
+        if (check)
+        {
+            SteamUserStats.SetAchievement("Winter_Bonus");
+
+            if (achievementChecked == false)
+                achievementChecked = true;
         }
     }
 }
