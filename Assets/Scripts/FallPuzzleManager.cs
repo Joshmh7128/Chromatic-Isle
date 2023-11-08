@@ -1,3 +1,4 @@
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +14,16 @@ public class FallPuzzleManager : MonoBehaviour
 
     [SerializeField] PuzzleElementDoor doorTwoA, doorTwoB, doorThreeA, doorThreeB, doorFinalA, doorFinalB; // our doors which we activate
 
+    bool achievementGot; // have we gotten the achievement?
+
     private void FixedUpdate()
     {
         CompareAnswers();
+
+        if (!achievementGot)
+        {
+            AchievementCheck();
+        }
     }
 
     // compare our answers
@@ -72,6 +80,26 @@ public class FallPuzzleManager : MonoBehaviour
 
             if (doorFinalB.canActivate)
                 doorFinalB.Activate();
+        }
+    }
+
+    // check for the achievement
+    void AchievementCheck()
+    {
+        bool check = true;
+        foreach (PuzzleElement bar in audioBars)
+        {
+            if (!bar.elementIsActive)
+            {
+                check = false;
+                break;
+            }
+        }
+
+        if (check)
+        {
+            SteamUserStats.SetAchievement("Fall_Bonus");
+            achievementGot = true;
         }
     }
 }
