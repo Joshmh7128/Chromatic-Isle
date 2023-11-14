@@ -19,8 +19,9 @@ public class TutorialCanvasHandler : MonoBehaviour
     }
 
 
-    public void SetMessage(string message)
+    public void SetMessage(string message, float target)
     {
+        targetCanvasAlpha = target;
         // set our current message
         currentMessage = message;
         // set our text
