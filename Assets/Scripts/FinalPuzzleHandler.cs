@@ -8,6 +8,7 @@ public class FinalPuzzleHandler : MonoBehaviour
     [SerializeField] List<int> solution; // the solution to the puzzles
 
     [SerializeField] List<InteractableStatue> statues;
+    [SerializeField] List<Transform> tracks; // the tracks
 
     bool runFinal = false;
     bool centered = false;
@@ -18,6 +19,12 @@ public class FinalPuzzleHandler : MonoBehaviour
         // run final?
         if (runFinal)
             RunFinal();
+
+        // move the tracks to the y positions of the player
+        foreach (Transform track in tracks)
+        {
+            track.position = new Vector3(track.position.x, PlayerController.instance.transform.position.y, track.position.z);
+        }
 
     }
 
