@@ -92,8 +92,22 @@ public class PlayerController : MonoBehaviour
     {
         // setup the sliders in the pause menu
         sensitivitySlider.value = PlayerPrefs.GetFloat("sensitivity", 7);
-        volumeSlider.value = PlayerPrefs.GetFloat("volume", 0.5f);
-        AudioListener.volume = PlayerPrefs.GetFloat("volume", 0.5f);
+
+        if (PlayerPrefs.GetFloat("volume") <= 0)
+        {
+            volumeSlider.value = 0.5f;
+            AudioListener.volume = 0.5f;
+            // reset the audio
+            PlayerPrefs.SetFloat("volume", 0.5f);
+        }
+
+        if (PlayerPrefs.GetFloat("volume") > 0)
+        {
+
+            volumeSlider.value = PlayerPrefs.GetFloat("volume", 0.5f);
+            AudioListener.volume = PlayerPrefs.GetFloat("volume", 0.5f);
+        }
+
         PlayerCameraController.instance.aimSensitivity = PlayerPrefs.GetFloat("sensitivity", 7);
     }
 
@@ -103,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F12))
         {
-            ResetGame();
+            HardReset();
         }
 
     }
@@ -269,6 +283,14 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetFloat("volume", 0.5f);
         PlayerPrefs.SetFloat("sensitivity", 7);
 
+        SceneManager.LoadScene("Hub");
+    }
+
+    // hard reset our player preferences
+    public void HardReset()
+    {
+        // for development purposes only
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadScene("Hub");
     }
 
