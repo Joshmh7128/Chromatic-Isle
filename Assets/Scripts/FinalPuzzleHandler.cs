@@ -13,6 +13,20 @@ public class FinalPuzzleHandler : MonoBehaviour
     bool runFinal = false;
     bool centered = false;
 
+    // sigil parents
+
+    public void Start()
+    {
+        // check to setup the lights
+        LightCheck();
+    }
+
+    // check to see if the symbols can be illuminated
+    void LightCheck()
+    {
+
+    }
+
     public void FixedUpdate()
     {
         SolutionCheck();
