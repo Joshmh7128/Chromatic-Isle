@@ -26,6 +26,9 @@ public class InteractableStatue : InteractableButton
 
         // run a statecheck at the start so that we play the correct sound
         StateCheck();
+
+        // run an on move end
+        OnMoveEnd();
     }
 
     private void FixedUpdate()
@@ -115,13 +118,12 @@ public class InteractableStatue : InteractableButton
 
     void OnMoveStart()
     {
-        Debug.Log(name + " OnMoveStart()");
-        // grindSource.Play();
+        grindSource.Play();
     }
 
     void OnMoveEnd()
     {
-        Debug.Log(name + " OnMoveEnd()");
-        // grindSource.Stop();
+        if (grindSource.isPlaying)
+            grindSource.Stop();
     }
 }

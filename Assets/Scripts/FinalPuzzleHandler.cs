@@ -10,7 +10,7 @@ public class FinalPuzzleHandler : MonoBehaviour
     [SerializeField] List<InteractableStatue> statues;
     [SerializeField] List<Transform> tracks; // the tracks
 
-    bool runFinal = false;
+    [SerializeField] bool runFinal = false;
     bool centered = false;
 
     // sigil parents
@@ -33,6 +33,7 @@ public class FinalPuzzleHandler : MonoBehaviour
         // run final?
         if (runFinal)
             RunFinal();
+
 
         // move the tracks to the y positions of the player
         foreach (Transform track in tracks)
@@ -74,10 +75,11 @@ public class FinalPuzzleHandler : MonoBehaviour
         {
             statue.usable = false;
         }
+
         // make all statues 2d audio
         foreach(AudioSource source in FindObjectsOfType<AudioSource>())
         {
-            source.spatialBlend = 0;
+            source.spatialBlend = Mathf.Lerp(source.spatialBlend, 0, 0.2f * Time.deltaTime);
         }
 
         if (Vector3.Distance(PlayerController.instance.transform.position, new Vector3(0, 5, 0)) < 0.5f)
