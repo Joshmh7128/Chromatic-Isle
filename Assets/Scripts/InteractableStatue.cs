@@ -37,7 +37,8 @@ public class InteractableStatue : InteractableButton
             transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
 
         // when we get there, stop moving
-        OnMoveEnd();
+        if (transform.position == targetPos)
+            OnMoveEnd();
     }
 
     public override void Interact()
@@ -114,11 +115,13 @@ public class InteractableStatue : InteractableButton
 
     void OnMoveStart()
     {
-        grindSource.Play();
+        Debug.Log(name + " OnMoveStart()");
+        // grindSource.Play();
     }
 
     void OnMoveEnd()
     {
-        grindSource.Stop();
+        Debug.Log(name + " OnMoveEnd()");
+        // grindSource.Stop();
     }
 }

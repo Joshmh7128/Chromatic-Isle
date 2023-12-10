@@ -120,6 +120,8 @@ public class PlayerController : MonoBehaviour
             HardReset();
         }
 
+        if (Input.GetKeyDown(KeyCode.End))
+            moveSpeed = 30f;
     }
 
     // Update is called once per frame
