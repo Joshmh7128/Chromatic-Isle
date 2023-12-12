@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject mainParent, creditsParent, confirmButton; // the main and credits parent objects
     [SerializeField] TMPro.TextMeshProUGUI creditsButtonText; // the text on the credits button
     [SerializeField] Slider sensitivitySlider, volumeSlider; // our sliders on the pause menu
+    public CanvasGroup fadeCanvasParent; // our fade canvas parent
 
     // callback for our pause menu
     protected Callback<GameOverlayActivated_t> SteamOverlayActivated;
