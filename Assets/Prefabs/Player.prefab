@@ -282,8 +282,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -145.59756}
-  m_SizeDelta: {x: 937.0799, y: 395.2888}
+  m_AnchoredPosition: {x: 0, y: -176.01733}
+  m_SizeDelta: {x: 937.0799, y: 341.8365}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2531290669739448502
 CanvasRenderer:
@@ -1075,8 +1075,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -160, y: -170.9}
-  m_SizeDelta: {x: 280, y: 395.2888}
+  m_AnchoredPosition: {x: -195.82962, y: -197.8983}
+  m_SizeDelta: {x: 351.6592, y: 341.8365}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &572796342500101578
 CanvasRenderer:
@@ -1143,8 +1143,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 10.9
+  m_fontSizeBase: 10.9
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2461,6 +2461,8 @@ MonoBehaviour:
     and support in the creation of this project
 
 
+    Made with love at GUMBO Collective
+    NYC
 
 
 '
@@ -2916,8 +2918,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 160, y: -172.91235}
-  m_SizeDelta: {x: 280, y: 395.2888}
+  m_AnchoredPosition: {x: 199.45795, y: -199.63852}
+  m_SizeDelta: {x: 358.9158, y: 341.8365}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3162289378898214168
 CanvasRenderer:
@@ -2984,8 +2986,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 10.9
+  m_fontSizeBase: 10.9
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
